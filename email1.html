@@ -1,0 +1,507 @@
+  <!doctype html>
+  <html>
+
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Simple Transactional Email</title>
+    <style>
+      @font-face {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Nunito Regular'), local('Nunito-Regular'), url(https://fonts.gstatic.com/s/nunito/v12/XRXV3I6Li01BKofIOOaBXso.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%;
+      }
+
+      body {
+        background-color: #f6f6f6;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-family: 'Nunito', sans-serif;
+      }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%;
+      }
+
+      table td {
+        font-size: 14px;
+        vertical-align: top;
+      }
+      .body {
+        background-color: #f6f6f6;
+        width: 100%;
+      }
+
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        max-width: 580px;
+        padding: 10px;
+        width: 580px;
+        padding-bottom: 80px;
+      }
+
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 10px;
+      }
+
+      .main {
+        background: #ffffff;
+        border-radius: 3px;
+        width: 100%;
+        margin-bottom: 50px;
+      }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px;
+      }
+
+      .content-block {
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .footer {
+        clear: both;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer td,
+      .footer p,
+      .footer span,
+      .footer a {
+        color: #999999;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-weight: 800;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 800;
+        text-align: center;
+        color: #4a4a4a;
+        margin: 40px 0;
+      }
+
+      img {
+        margin-bottom: 40px;
+      }
+
+      p,
+      ul,
+      ol {
+        text-align: center;
+        font-size: 16px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 50px;
+        padding: 0 30px;
+        color: #818181;
+      }
+
+      p li,
+      ul li,
+      ol li {
+        list-style-position: inside;
+        margin-left: 5px;
+      }
+
+      a {
+        color: #870f50;
+        text-decoration: underline;
+        font-weight: 800;
+      }
+
+
+      .top-link {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        margin-bottom: -18px;
+      }
+      .social img{
+        width: 20px;
+      }
+      .social{
+        width: 30px;
+        text-align: center;
+      }
+      
+      .top-link a {
+        color: #818181;
+        font-weight: 400;
+      }
+
+      .btn {
+        box-sizing: border-box;
+        margin-bottom: 40px;
+        width: 100%;
+      }
+
+      .btn>tbody>tr>td {
+        padding-bottom: 15px;
+      }
+
+      .btn table {
+        width: auto;
+      }
+
+      .btn table td {
+        background-color: #ffffff;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .btn a {
+        background-color: #ffffff;
+        border: solid 1px #870f50;
+        border-radius: 5px;
+        box-sizing: border-box;
+        color: #3498db;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 0;
+        padding: 12px 25px;
+        text-decoration: none;
+        text-transform: capitalize;
+      }
+
+      .btn-primary table td {
+        background-color: #870f50;
+      }
+
+      .btn-primary a {
+        background-color: #870f50;
+        border-color: #870f50;
+        color: #ffffff;
+      }
+
+
+      .link-secondary {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 400;
+        color: #818181;
+      }
+
+      .last {
+        margin-bottom: 0;
+      }
+
+      .first {
+        margin-top: 0;
+      }
+
+      .align-center {
+        text-align: center;
+      }
+
+      .align-right {
+        text-align: right;
+      }
+
+      .align-left {
+        text-align: left;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      .mt0 {
+        margin-top: 0;
+      }
+
+      .mb0 {
+        margin-bottom: 0;
+      }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0;
+      }
+
+      .powered-by a {
+        text-decoration: none;
+      }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0;
+      }
+
+      @media only screen and (max-width: 620px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important;
+        }
+
+        table[class=body] p,
+        table[class=body] ul,
+        table[class=body] ol,
+        table[class=body] td,
+        table[class=body] span,
+        table[class=body] a {
+          font-size: 16px !important;
+        }
+
+        table[class=body] .wrapper,
+        table[class=body] .article {
+          padding: 10px !important;
+        }
+
+        table[class=body] .content {
+          padding: 0 !important;
+        }
+
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important;
+          margin-bottom: 40px;
+        }
+
+        table[class=body] .btn table {
+          width: 100% !important;
+        }
+
+        table[class=body] .btn a {
+          width: 100% !important;
+        }
+
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important;
+        }
+      }
+
+      .footer-p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      @media all {
+        .ExternalClass {
+          width: 100%;
+        }
+
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%;
+        }
+
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important;
+        }
+
+        #MessageViewBody a {
+          color: inherit;
+          text-decoration: none;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+        }
+
+        .btn-primary table td:hover {
+          background-color: #34495e !important;
+        }
+
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body class="">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+
+          <table align="center">
+            <tr>
+            <tr>
+              <p class="top-link" style="margin-top: 50px;">
+                <a href="">Otevřít v prohlížeči</a>
+              </p>
+            </tr>
+      </tr>
+      <tr>
+        <td align="center">
+          <img src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/logo.png?l1_bG9nby5wbmc1591449178"
+            alt="" width="80" style="margin: 30px 0 50px 0;">
+        </td>
+      </tr>
+    </table>
+    <table role="presentation" class="main">
+
+      <tr>
+
+        <td class="wrapper">
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+            <tr align="center" style="font-size:40px">
+              <td>
+                <h1>Feature relese alert</h1>
+              </td>
+            </tr>
+            <tr>
+              <td>
+
+                <p>V Marketplace Poopeeku nyní najdete nové nabídky v Brně, Praze, Písku i Českých Budějovicích.
+                  Nenechte si ujít ani jednu z nich, reagujte a bavte se vyjednáváním!</p>
+
+
+
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <img
+                  src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/site.png?l1_c2l0ZS5wbmc1591449181"
+                  alt="" width="280px">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <p>V Marketplace Poopeeku nyní najdete nové nabídky v Brně, Praze, Písku i Českých Budějovicích.
+                  Nenechte si ujít ani jednu z nich, reagujte a bavte se vyjednáváním!</p>
+                <p>Máte-li chuť se snámi podělit o svoje dojmy z vyjednávání, či se zeptat lidí z branže, jak řešit
+                  svoje potíže s bookingem, neváhejte se zastavit
+                  na jednu z našich zastávek Poopeek RoadShow 2020. <a href="">Více informací o programu a speciálních
+                    hostech panelových diskuzí na facebooku,</a>
+                  Vstup je ZDARMA
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                  <tbody>
+                    <tr>
+                      <td align="center">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                          <tbody>
+                            <tr>
+                              <td> <a href="http://htmlemail.io" target="_blank">To chci vyzkoušet!</a> </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Hodně štěstí při vyjednávání přejí holky a kluci z Poopeeku.</p>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+
+    </table>
+    <table>
+      <tr>
+        <td></td>
+        <td  class="social"><a href=""><img src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/yt.png?l1_eXQucG5n1591452776" alt=""></a></td>
+        <td  class="social"><a href="https://twitter.com/ThePoopeek "><img src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/tw.png?l1_dHcucG5n1591452765" alt=""></a></td>
+        <td  class="social"><a href="https://www.facebook.com/ThePoopeek/"><img src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/fb.png?l1_ZmIucG5n1591452727" alt=""></a></td>
+        <td  class="social"><a href="https://www.instagram.com/thepoopeek/"><img src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/ig.png?l1_aWcucG5n1591452745" alt=""></a></td>
+        <td  class="social"><a href="https://www.linkedin.com/organization-guest/company/poopeek"><img src="https://s3-eu-west-1.amazonaws.com/se20-account-data/155742/media/in.png?l1_aW4ucG5n1591452755" alt=""></a></td>
+        <td></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <p class="footer-p">Tento email byl odeslán na adresu info@poopeek.com.</p>
+          <p class="footer-p">Odesílatelem je Poopeek s.r.o., info@poopeek.com.</p>
+          <p class="footer-p">Tento e-mail je podle zákona obchodním sdělením.</p>
+          <p></p>
+          <p class="footer-p">Z odběru se můžete <a href="" class="link-secondary">odhlásit.</a></p>
+        </td>
+      </tr>
+    </table>
+
+
+    </td>
+    <td>&nbsp;</td>
+    </tr>
+    </table>
+  </body>
+
+  </html>
